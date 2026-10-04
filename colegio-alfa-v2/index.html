@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#E31B23">
+  <title>Colegio Alfa · Mi mundo de aprendizaje</title>
+  <link rel="icon" href="assets/logo-alfa.png" type="image/png">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Carga modular -->
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+<header>
+  <a class="brand" href="./">
+    <img src="assets/logo-alfa.png" alt="Logotipo del Colegio Alfa" width="54" height="54">
+    <span>COLEGIO <b>ALFA</b><small>Formando buenas personas para un futuro mejor...</small></span>
+  </a>
+  <span class="header-tag">PORTAL ESTUDIANTIL <i>✦</i></span>
+</header>
+
+<main id="login-view" class="login-layout">
+  <section class="welcome welcome-school" aria-labelledby="welcome-title">
+    <span class="eyebrow">BIENVENIDO A NUESTRA FAMILIA ALFA</span>
+    <h1 id="welcome-title">Un gran futuro<br>empieza <em>contigo.</em></h1>
+    <p>Tu colegio, tus amigos y nuevas aventuras por descubrir. Aprende, imagina y crece con nosotros, un paso a la vez.</p>
+    <figure class="school-card">
+      <div class="school-photo-wrap has-photo">
+        <img id="school-photo" src="assets/cole%20alfa.jpg" alt="Fachada del Colegio Alfa" width="977" height="608">
+        <span class="school-badge">✦ SOMOS ALFA</span>
+      </div>
+      <figcaption>
+        <span class="school-caption-icon" aria-hidden="true">⌂</span>
+        <div><strong>Un lugar para aprender y crecer</strong><span>Colegio Alfa · Formando buenas personas</span></div>
+        <span class="school-heart" aria-hidden="true">♡</span>
+      </figcaption>
+    </figure>
+    <div class="welcome-foot"><span>✦ Aprende a tu ritmo</span><span>♡ Crece con valores</span><span>↗ Descubre tu talento</span></div>
+  </section>
+
+  <section class="login-card">
+    <span class="little-icon">👋</span>
+    <h2>¡Hola, estudiante!</h2>
+    <p>Ingresa a tu mundo de aprendizaje.</p>
+    <div class="grade-pill">🎒 4.º de primaria <span>•</span> Aula virtual</div>
+    <form id="login-form">
+      <label for="username">Usuario</label>
+      <input id="username" name="username" placeholder="Escribe tu usuario" autocomplete="username" required>
+      <label for="password">Contraseña</label>
+      <div class="password-wrap">
+        <input id="password" name="password" type="password" placeholder="Escribe tu contraseña" autocomplete="current-password" required>
+        <button type="button" id="toggle-password" aria-label="Mostrar contraseña">Ver</button>
+      </div>
+      <p id="login-error" class="error" role="alert"></p>
+      <button class="primary wide" type="submit">¡Vamos a aprender! <span>→</span></button>
+    </form>
+    <p class="help-text">¿Necesitas ayuda? <button class="text-button" data-chat>Pregúntale a AlfaBot</button></p>
+  </section>
+</main>
+
+<div id="portal-view" hidden>
+  <nav class="portal-nav" aria-label="Navegación principal">
+    <span class="nav-title">Mi aula <b>4.º primaria</b></span>
+    <div>
+      <button class="nav-button active" data-page="courses">Mis cursos</button>
+      <button class="nav-button" data-page="tasks">Mis tareas</button>
+      <button id="logout" class="text-button">Salir ↗</button>
+    </div>
+  </nav>
+  <main class="dashboard">
+    <section class="dashboard-hero">
+      <div>
+        <span class="eyebrow">CADA DÍA ES UNA NUEVA OPORTUNIDAD</span>
+        <h1>¡Hoy puedes descubrir<br>algo <em>increíble!</em> ✨</h1>
+        <p>Elige un curso y da el siguiente paso en tu aventura.</p>
+        <span class="grade-pill">🎒 Cuarto de primaria · Colegio Alfa</span>
+      </div>
+      <img src="assets/learning.svg" alt="Una aventura entre libros y colores">
+    </section>
+    
+    <section id="courses-page">
+      <div class="section-heading">
+        <div><span class="eyebrow">EXPLORA Y APRENDE</span><h2>Mis cursos</h2></div>
+        <span>6 caminos para descubrir tu talento</span>
+      </div>
+      <div id="course-grid" class="course-grid"></div>
+    </section>
+
+    <section id="tasks-page" hidden>
+      <div class="section-heading">
+        <div><span class="eyebrow">PASO A PASO, LO ESTÁS LOGRANDO</span><h2>Mis tareas</h2></div>
+      </div>
+      <p>Estas entregas se guardan solo en este navegador; no se envían a un profesor.</p>
+      <div id="task-list"></div>
+    </section>
+
+    <aside class="encouragement">
+      <span>🌟</span>
+      <div><b>No necesitas saberlo todo para empezar.</b><p>Pregunta, practica y vuelve a intentarlo. ¡Estamos para acompañarte!</p></div>
+      <button class="text-button" data-chat>Hablar con AlfaBot →</button>
+    </aside>
+  </main>
+</div>
+
+<footer>
+  <span>© Colegio Alfa · Aprendemos juntos, crecemos juntos.</span>
+  <span>Hecho para pequeñas grandes mentes <span class="red">♥</span></span>
+</footer>
+
+<!-- Modal del Aula -->
+<dialog id="course-dialog" aria-labelledby="course-title">
+  <div class="classroom-shell">
+    <aside class="classroom-rail" aria-label="Accesos del aula">
+      <img src="assets/logo-alfa.png" alt="Colegio Alfa" width="40" height="40">
+      <button id="close-course" title="Volver a mis cursos" aria-label="Volver a mis cursos">←</button>
+      <button data-aula="lessons" title="Sesiones" aria-label="Sesiones">📖</button>
+      <button data-aula="resources" title="Recursos" aria-label="Recursos">📂</button>
+      <button data-aula="homework" title="Buzón de tareas" aria-label="Buzón de tareas">📬</button>
+      <span class="rail-grade">4.º</span>
+    </aside>
+    <div class="classroom-main">
+      <div class="classroom-top">
+        <div class="course-identity">
+          <span id="course-emblem" aria-hidden="true"></span>
+          <div><span class="eyebrow">MI AULA · COLEGIO ALFA</span><h2 id="course-title"></h2></div>
+        </div>
+        <button id="toggle-support" class="support-toggle" aria-expanded="true" aria-controls="course-support">Mi ayuda ☰</button>
+      </div>
+      <div class="session-progress">
+        <progress id="session-progress" max="5" value="0" aria-label="Sesiones completadas"></progress>
+        <span id="progress-label"></span>
+      </div>
+      <nav class="classroom-tabs" aria-label="Secciones del aula">
+        <button data-aula="lessons" aria-current="page">Curso y sesiones</button>
+        <button data-aula="resources">Mis recursos</button>
+        <button data-aula="homework">Entregar tarea</button>
+      </nav>
+      <div class="classroom-body">
+        <section id="aula-lessons">
+          <p id="course-description"></p>
+          <div id="course-world" class="course-world"></div>
+          <div class="route-heading"><h3>Tu ruta de aprendizaje</h3><span>5 sesiones para descubrir</span></div>
+          <nav id="session-nav" aria-label="Sesiones del curso"></nav>
+          <article id="session-content" aria-labelledby="session-title"></article>
+          <h3>🎮 Aprende jugando</h3>
+          <div class="games">
+            <button id="start-quiz" class="primary">Practicar aquí →</button>
+            <a href="https://www.educaplay.com/" target="_blank" rel="noopener noreferrer">Educaplay ↗</a>
+            <a href="https://quizizz.com/" target="_blank" rel="noopener noreferrer">Quizizz ↗</a>
+          </div>
+          <small>Los enlaces externos abren las plataformas; no son actividades asignadas por el colegio.</small>
+          <div id="quiz" hidden></div>
+          <div class="session-actions">
+            <button id="previous-session" class="text-button">← Anterior</button>
+            <button id="complete-session" class="primary">Marcar sesión como completada ✓</button>
+            <button id="next-session" class="text-button">Siguiente →</button>
+          </div>
+          <p id="progress-status" role="status"></p>
+        </section>
+        <section id="aula-resources" hidden>
+          <span class="eyebrow">EXPLORA, DESCARGA Y CREA</span>
+          <h3>📂 Recursos generales del curso</h3>
+          <div class="resources">
+            <a id="drawing-link" download>🎨 Descargar dibujo SVG <span>↓</span></a>
+            <a id="pdf-link" download>📄 Descargar ficha general PDF <span>↓</span></a>
+          </div>
+          <div class="resource-tip">💡 Estas fichas son recursos generales del curso. Las actividades de cada sesión están en “Curso y sesiones”.</div>
+        </section>
+        <section id="aula-homework" hidden>
+          <span class="eyebrow">CADA ESFUERZO CUENTA</span>
+          <h2 id="homework-session"></h2>
+          <h3>📬 Buzón de tareas</h3>
+          <p class="muted">Guarda una entrega de prueba en tu navegador (PDF, PNG o JPG, máximo 5 MB).</p>
+          <form id="upload-form">
+            <label for="homework">Selecciona tu archivo</label>
+            <input id="homework" type="file" accept=".pdf,.png,.jpg,.jpeg" required>
+            <button type="submit" class="primary">Guardar mi tarea ↑</button>
+            <p id="upload-status" role="status"></p>
+          </form>
+        </section>
+      </div>
+    </div>
+    <aside id="course-support" class="course-support" aria-label="Apoyo para tu aprendizaje">
+      <div class="support-top"><b>Mi espacio de apoyo</b><button id="close-support" class="icon-button" aria-label="Cerrar panel de apoyo">✕</button></div>
+      <section>
+        <span class="eyebrow">TU MISIÓN DE HOY</span>
+        <h3 id="support-title"></h3><p id="support-goal"></p>
+      </section>
+      <section class="mentor-card">
+        <div class="mentor-portrait"><img src="assets/alfabot.svg" alt="Robot AlfaBot" width="72" height="72"></div>
+        <h3>Aprende con AlfaBot</h3>
+        <p>Lee, prueba y pregunta. ¡Cada pequeño paso cuenta!</p>
+        <button id="session-hint" class="text-button">Dame una pista →</button>
+        <p id="session-hint-text" hidden role="status"></p>
+      </section>
+      <section>
+        <h3>Mi avance</h3><div id="support-progress"></div>
+        <small>Tu progreso se guarda en este navegador. No es una calificación.</small>
+      </section>
+      <section class="support-note">
+        <b>🎒 Prepara tu mochila</b><p>Cuaderno, lápiz, colores y muchas ganas de descubrir.</p>
+      </section>
+    </aside>
+  </div>
+</dialog>
+
+<button id="chat-launcher" aria-label="Abrir AlfaBot" aria-expanded="false">
+  <img class="launcher-robot" src="assets/alfabot.svg" alt="" width="40" height="40"> 
+  <span>¿Te ayudo?</span><b>AlfaBot</b>
+</button>
+<section id="chat-panel" hidden aria-label="Chat con AlfaBot">
+  <div class="chat-heading">
+    <img class="bot-avatar" src="assets/alfabot.svg" alt="Robot AlfaBot" width="46" height="46">
+    <div><b>AlfaBot</b><small>Tu compañero de aprendizaje</small></div>
+    <button id="close-chat" class="icon-button" aria-label="Cerrar chat">✕</button>
+  </div>
+  <div id="chat-messages" role="log" aria-live="polite"></div>
+  <div class="suggestions">
+    <button data-prompt="¿Cómo subo mi tarea?">Subir tarea</button>
+    <button data-prompt="Ayúdame con matemática">Matemática</button>
+    <button data-prompt="Necesito ánimo">Dame ánimo</button>
+  </div>
+  <form id="chat-form">
+    <input id="chat-input" aria-label="Escribe tu pregunta" placeholder="Escribe tu pregunta…" maxlength="400" required>
+    <button class="primary" aria-label="Enviar mensaje">↑</button>
+  </form>
+  <small class="chat-note">Ayuda automática con respuestas predefinidas.</small>
+</section>
+</body>
+</html>
